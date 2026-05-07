@@ -2,9 +2,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
-import Projects from './pages/Projects';
+import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetails from './pages/ProjectDetails';
-import Tasks from './pages/Tasks';
+import TasksWithSearch from './pages/TasksWithSearch';
 import TaskDetails from './pages/TaskDetails';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -20,9 +20,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:id" element={<ProjectDetails />} />
-            <Route path="/tasks" element={<Tasks />} />
+            <Route path="/tasks" element={<TasksWithSearch />} />
             <Route path="/tasks/:id" element={<TaskDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
