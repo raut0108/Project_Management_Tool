@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
 import TaskCard from '../components/TaskCard';
+import { projects, tasks } from '../data/mockData';
 
 function Dashboard() {
   return (
@@ -12,11 +14,11 @@ function Dashboard() {
         <div className="status-box">
           <div>
             <span>Open tasks</span>
-            <strong>18</strong>
+            <strong>{tasks.length}</strong>
           </div>
           <div>
             <span>Projects</span>
-            <strong>6</strong>
+            <strong>{projects.length}</strong>
           </div>
         </div>
       </div>
@@ -25,11 +27,16 @@ function Dashboard() {
         <div className="section-panel">
           <div className="section-heading">
             <h2>Active projects</h2>
-            <button className="secondary-btn">New project</button>
+            <Link to="/projects" className="secondary-btn">
+              View all
+            </Link>
           </div>
           <div className="card-grid">
-            <ProjectCard title="Website redesign" team="Admin, UI" progress="74%" />
-            <ProjectCard title="Mobile app" team="Ops, Dev" progress="42%" />
+            {projects.slice(0, 2).map((project) => (
+              <Link key={project.id} to={`/projects/${project.id}`} className="link-card">
+                <ProjectCard title={project.title} team={project.team} progress={`${project.progress}%`} />
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -37,9 +44,11 @@ function Dashboard() {
           <div className="section-heading">
             <h2>Recent tasks</h2>
           </div>
-          <TaskCard title="Design login page" assignee="Priya" status="In progress" />
-          <TaskCard title="Fix billing bug" assignee="Rahul" status="Pending" />
-          <TaskCard title="Review sprint plan" assignee="Neha" status="Done" />
+          {tasks.slice(0, 3).map((task) => (
+            <Link key={task.id} to={`/tasks/${task.id}`} className="link-card">
+              <TaskCard title={task.title} assignee={task.assignee} status={task.status} />
+            </Link>
+          ))}
         </div>
       </section>
     </div>

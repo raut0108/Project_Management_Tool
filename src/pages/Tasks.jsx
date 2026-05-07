@@ -1,16 +1,23 @@
+import { Link } from 'react-router-dom';
 import TaskCard from '../components/TaskCard';
+import { tasks } from '../data/mockData';
 
 function Tasks() {
   return (
     <div className="content-page">
       <div className="section-heading">
-        <h2>Tasks</h2>
+        <div>
+          <h2>Tasks</h2>
+          <p className="muted-text">Track assignments, status, and due dates in one place.</p>
+        </div>
         <button className="secondary-btn">New task</button>
       </div>
       <div className="task-list">
-        <TaskCard title="Prepare sprint backlog" assignee="Anil" status="In progress" />
-        <TaskCard title="Assign QA cases" assignee="Mira" status="Pending" />
-        <TaskCard title="Update project brief" assignee="Karan" status="Review" />
+        {tasks.map((task) => (
+          <Link key={task.id} to={`/tasks/${task.id}`} className="link-card">
+            <TaskCard title={task.title} assignee={task.assignee} status={task.status} />
+          </Link>
+        ))}
       </div>
     </div>
   );

@@ -1,16 +1,23 @@
+import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
+import { projects } from '../data/mockData';
 
 function Projects() {
   return (
     <div className="content-page">
       <div className="section-heading">
-        <h2>Projects</h2>
+        <div>
+          <h2>Projects</h2>
+          <p className="muted-text">Manage active teams, progress, and deadlines.</p>
+        </div>
         <button className="secondary-btn">Add project</button>
       </div>
       <div className="card-grid">
-        <ProjectCard title="Website redesign" team="Design, Dev" progress="70%" />
-        <ProjectCard title="Launch event" team="Ops, Marketing" progress="55%" />
-        <ProjectCard title="API integration" team="Backend" progress="30%" />
+        {projects.map((project) => (
+          <Link key={project.id} to={`/projects/${project.id}`} className="link-card">
+            <ProjectCard title={project.title} team={project.team} progress={`${project.progress}%`} />
+          </Link>
+        ))}
       </div>
     </div>
   );
